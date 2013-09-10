@@ -1,0 +1,17 @@
+admin-email = <%= node.spacewalk.server.admin_email %>
+ssl-set-org = <%= node.spacewalk.server.ssl.org %>
+ssl-set-org-unit = <% node.spacewalk.server.ssl.org_unit %>
+ssl-set-city = <% node.spacewalk.server.ssl.city %>
+ssl-set-state = <% node.spacewalk.server.ssl.state %>
+ssl-set-country = <% node.spacewalk.server.ssl.country %>
+ssl-password = <% node.spacewalk.server.ssl.password %>
+ssl-set-email = <% node.spacewalk.server.ssl.email %>
+ssl-config-sslvhost = <% node.spacewalk.server.ssl.config_vhost %>
+db-backend=<% default.spacewalk.server.db.backend %>
+db-name=<% default.spacewalk.server.db.name %>
+db-user=<% default.spacewalk.server.db.user %>
+db-password=<% default.spacewalk.server.db.password %>
+db-host=<% default.spacewalk.server.db.host %>
+db-port=<% default.spacewalk.server.db.port %>
+enable-tftp=<% default.spacewalk.server.enable_tftp %>
+
