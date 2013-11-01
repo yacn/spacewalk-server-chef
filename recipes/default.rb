@@ -43,7 +43,7 @@ end
 template "#{Chef::Config[:file_cache_path]}/spacewalk-answers.conf" do
   source 'spacewalk-answers.conf.erb'
   mode 0755
-  action :create_if_missing
+  action :create
 end
 
 execute 'spacewalk-setup' do
