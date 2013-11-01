@@ -10,4 +10,5 @@ version          '0.1.1'
   supports os
 end
 
+depends 'iptables'
 depends 'yum'
