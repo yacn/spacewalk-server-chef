@@ -1,0 +1,5 @@
+# Spacewalk rules from https://fedorahosted.org/spacewalk/wiki/HowToInstall
+<% [80, 443, 5222, 5269].each do |p| -%>
+-A FWR -p tcp -m tcp --dport <%= p %> -j ACCEPT
+<% end -%>
+-A FWR -p udp -m udp --dport 69 -j ACCEPT

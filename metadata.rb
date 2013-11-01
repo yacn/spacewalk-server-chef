@@ -4,10 +4,11 @@ maintainer_email 'admin@yacn.pw'
 license          'MIT'
 description      'Installs/Configures a Spacewalk Server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version          '0.1.1'
 
-%w[redhat centos].each do |os|
-  supports os, '>= 6.0'
+%w[fedora redhat centos].each do |os|
+  supports os
 end
 
+depends 'iptables'
 depends 'yum'
