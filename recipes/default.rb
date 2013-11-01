@@ -18,7 +18,8 @@ end
 yum_repository 'jpackage-generic' do
   url 'http://mirrors.dotsrc.org/pub/jpackage/5.0/generic/free/'
   mirrorlist 'http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=5.0'
-  key 'JPackage'
+  description 'JPackage Generic'
+  key 'jpackage'
   enabled 1
   action :add
 end
