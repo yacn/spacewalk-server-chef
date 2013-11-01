@@ -27,7 +27,7 @@ when 'postgres'
   default['spacewalk']['server']['db']['name'] = 'spaceschema'
   default['spacewalk']['server']['db']['user'] = 'spaceuser'
   default['spacewalk']['server']['db']['password'] = 'spacepw'
-  default['spacewalk']['server']['db']['host'] = 'host'
+  default['spacewalk']['server']['db']['host'] = 'localhost'
   default['spacewalk']['server']['db']['port'] = 5432
 when 'oracle'
   default['spacewalk']['server']['db']['backend'] = 'oracle'
