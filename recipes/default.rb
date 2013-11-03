@@ -57,7 +57,8 @@ link '/etc/init.d/spacewalk-service' do
   action :create
 end
 
+# RedHat init script doesn't support chkconfig. Imagine that...
 service 'spacewalk-service' do
   supports :status => true, :reload => true, :restart => true
-  action [ :enable, :start ]
+  action :start
 end
