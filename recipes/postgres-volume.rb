@@ -37,5 +37,9 @@ if node['ec2']
     to '/mnt/ephemeral/pgsql'
   end
 
-  # XXX set selinux context so db install will succeed
+  execute 'ensure-proper-selinux-context' do
+    command '/usr/bin/chcon -Rt postgresql_db_t /mnt/ephemeral/pgsql'
+    action :run
+    # not sure if there is a proper idempotency guard that could be placed here
+  end
 end
