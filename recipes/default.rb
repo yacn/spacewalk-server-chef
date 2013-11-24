@@ -40,6 +40,8 @@ end
   end
 end
 
+include_recipe "spacewalk-server::postgres-volume"
+
 template "#{Chef::Config[:file_cache_path]}/spacewalk-answers.conf" do
   source 'spacewalk-answers.conf.erb'
   mode 0755
