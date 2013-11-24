@@ -51,7 +51,7 @@ end
 execute 'spacewalk-setup' do
   command "spacewalk-setup --disconnected --answer-file=#{Chef::Config[:file_cache_path]}/spacewalk-answers.conf"
   action :run
-  # XXX needs an idempotency guard!! like not_if File.exists?('/etc/rhn/rhn.conf')
+  creates "/etc/rhn/rhn.conf"
 end
 
 link '/etc/init.d/spacewalk-service' do
