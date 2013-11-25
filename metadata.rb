@@ -12,3 +12,4 @@ end
 
 depends 'iptables'
 depends 'yum'
+depends 'ephemeral_lvm'
