@@ -11,5 +11,7 @@ version          '0.1.1'
 end
 
 depends 'iptables'
-depends 'yum'
+depends 'yum', '> 3.0.0'
+depends 'yum-epel'
+depends 'yum-fedora'
 depends 'ephemeral_lvm'

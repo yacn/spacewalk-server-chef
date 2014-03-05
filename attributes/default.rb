@@ -13,12 +13,14 @@ default['spacewalk']['server']['ssl']['email'] = 'root@localhost'
 default['spacewalk']['server']['ssl']['config_vhost'] = 'Y'
 default['spacewalk']['server']['enable_tftp'] = 'Y'
 
+arch = node['kernel']['machine'] == 'x86_64' ? 'x86_64' : 'i386'
+
 case node['platform_family']
-when 'rhel', 'centos'
+when 'rhel'
   platform_major = node['platform_version'][0]
-  default['spacewalk']['server']['repo_url'] = "http://yum.spacewalkproject.org/2.0/RHEL/#{platform_major}/x86_64/spacewalk-repo-2.0-3.el#{platform_major}.noarch.rpm"
+  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.1/RHEL/#{platform_major}/#{arch}/spacewalk-repo-2.1-2.el#{platform_major}.noarch.rpm"
 when 'fedora'
-  default['spacewalk']['server']['repo_url'] = "http://yum.spacewalkproject.org/2.0/Fedora/#{node['platform_version']}/x86_64/spacewalk-repo-2.0-3.fc#{node['platform_version']}.noarch.rpm"
+  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.1/Fedora/#{node['platform_version']}/#{arch}/spacewalk-repo-2.1-2.fc#{node['platform_version']}.noarch.rpm"
 end
 
 case node['spacewalk']['server']['db']['type']
