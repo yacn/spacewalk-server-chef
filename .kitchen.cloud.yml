@@ -1,0 +1,27 @@
+---
+driver_config:
+  digitalocean_client_id: <%= ENV['DIGITAL_OCEAN_CLIENT_ID'] %>
+  digitalocean_api_key: <%= ENV['DIGITAL_OCEAN_API_KEY'] %>
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: latest
+# pending https://github.com/test-kitchen/test-kitchen/pull/363
+#  client_rb:
+#    yum_timeout: 3600
+
+platforms:
+- name: fedora-19
+  driver_plugin: digitalocean
+  driver_config:
+    image_id: 696598
+    flavor_id: 63
+    region_id: 4
+    ssh_key_ids: <%= ENV['DIGITAL_OCEAN_SSH_KEY_IDS'] %>
+    ssh_key: <%= ENV['DIGITAL_OCEAN_SSH_KEY_PATH'] %>
+
+suites:
+- name: default
+  run_list:
+  - recipe[spacewalk-server]
+  attributes: {}

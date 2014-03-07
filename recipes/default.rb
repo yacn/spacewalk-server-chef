@@ -8,19 +8,15 @@
 #
 
 # Add required YUM repos
-include_recipe 'yum::epel'
-
-yum_key 'jpackage' do
-  url 'http://www.jpackage.org/jpackage.asc'
-  action :add
-end
+include_recipe 'yum-epel' if platform_family?('rhel')
+include_recipe 'yum-fedora' if platform_family?('fedora')
 
 yum_repository 'jpackage-generic' do
   url 'http://mirrors.dotsrc.org/pub/jpackage/5.0/generic/free/'
   mirrorlist 'http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=5.0'
   description 'JPackage Generic'
-  key 'jpackage'
-  enabled 1
+  gpgkey 'http://www.jpackage.org/jpackage.asc'
+  enabled true
   action :add
 end
 

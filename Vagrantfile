@@ -7,13 +7,14 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   config.vm.hostname = "spacewalk-server-berkshelf"
+  config.omnibus.chef_version = :latest
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "opscode_centos-6.4_chef-11.8.0"
+  config.vm.box = "opscode-fedora-20"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "https://dl.dropbox.com/u/31081437/Berkshelf-CentOS-6.3-x86_64-minimal.box"
+  config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_fedora-20_chef-provisionerless.box"
 
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as
@@ -67,17 +68,11 @@ Vagrant.configure("2") do |config|
   # to skip installing and copying to Vagrant's shelf.
   # config.berkshelf.except = []
 
-  config.vm.provision :chef_solo do |chef|
-    chef.json = {
-      :mysql => {
-        :server_root_password => 'rootpass',
-        :server_debian_password => 'debpass',
-        :server_repl_password => 'replpass'
-      }
-    }
+  config.vm.provision :shell, inline: "mkdir -p /etc/chef && echo yum_timeout 1800 > /etc/chef/client.rb"
+  config.vm.provision :chef_client do |chef|
 
     chef.run_list = [
-        "recipe[spacewalk-server::default]"
+        "recipe[spacewalk-server]"
     ]
   end
 end
