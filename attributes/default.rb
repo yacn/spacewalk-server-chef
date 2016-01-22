@@ -13,14 +13,14 @@ default['spacewalk']['server']['ssl']['email'] = 'root@localhost'
 default['spacewalk']['server']['ssl']['config_vhost'] = 'Y'
 default['spacewalk']['server']['enable_tftp'] = 'Y'
 
-arch = node['kernel']['machine'] == 'x86_64' ? 'x86_64' : 'i386'
+
+default['spacewalk']['server']['version'] = '2.4'
 
 case node['platform_family']
 when 'rhel'
-  platform_major = node['platform_version'][0]
-  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.1/RHEL/#{platform_major}/#{arch}/spacewalk-repo-2.1-2.el#{platform_major}.noarch.rpm"
+  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/#{node['spacewalk']['server']['version']}/RHEL/#{node['platform_version'].to_i}/#{node['kernel']['machine']}/spacewalk-repo-#{node['spacewalk']['server']['version']}-3.el#{node['platform_version'].to_i}.noarch.rpm"
 when 'fedora'
-  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.1/Fedora/#{node['platform_version']}/#{arch}/spacewalk-repo-2.1-2.fc#{node['platform_version']}.noarch.rpm"
+  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/#{node['spacewalk']['server']['version']}/Fedora/#{node['platform_version'].to_i}/#{node['kernel']['machine']}/spacewalk-repo-{node['spacewalk']['server']['version']}-2.fc#{node['platform_version'].to_i}.noarch.rpm"
 end
 
 case node['spacewalk']['server']['db']['type']
